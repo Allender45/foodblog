@@ -13,6 +13,8 @@ class RecipeInline(admin.StackedInline):
 class PostAdmin(admin.ModelAdmin):
     list_display = ('id', 'title', 'author', 'category', 'create_at')
     inlines = [RecipeInline]
+    save_as = True
+    save_on_top = True
 
 
 @admin.register(Recipe)
@@ -20,6 +22,10 @@ class RecipeAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'serves', 'prep_time', 'cook_time')
 
 
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name', 'email', 'website', 'create_at')
+
+
 admin.site.register(Category, MPTTModelAdmin)
 admin.site.register(Tag)
-admin.site.register(Comment)
